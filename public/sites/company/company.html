@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>List of Top 10 Companies</title>
+    <style>
+        body {
+            background: #EBEFF5;
+            font-family: 'Verdana';
+        }
+
+        .card-wrapper {
+            padding: 20px;
+            margin: 10px;
+            background: white;
+            box-shadow: 1px 2px 6px 0px lightgrey;
+        }
+
+        #companyList {}
+
+        #companyList table {
+            font-size: 12px;
+            text-align: right;
+        }
+
+        #companyList table thead {
+            background: white;
+            font-weight: bold;
+        }
+
+        thead td {
+            border-bottom: 1px solid lightgrey;
+        }
+
+        tbody tr:nth-child(2n) {
+            background: #F8F8FC;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        .backLink {
+            margin-top: 25px;
+        }
+
+        .logoutLink {
+            position: absolute;
+            right: 20px;
+            text-decoration: none;
+            color: white;
+            padding: 1em;
+        }
+
+        .logoutLink:hover {
+            background: white;
+            color: #25286C;
+        }
+
+        .pros-cons {
+            display: flex;
+        }
+
+        .pro-con-card {
+            padding: 1em;
+        }
+
+        .pro-con-card li {
+            font-size: 14px;
+            padding-bottom: 1em;
+        }
+
+        .pro-card {
+            flex: 1;
+            border: 1px solid mediumseagreen;
+            margin-right: 0.5em;
+        }
+
+        .con-card {
+            flex: 1;
+            border: 1px solid crimson;
+            margin-left: 0.5em;
+        }
+
+        .display-flex {
+            display: flex;
+        }
+
+        .font-12 {
+            font-size: 12px;
+        }
+
+        .font-14 {
+            font-size: 14px;
+        }
+
+        .info-table {
+            padding: 1em;
+        }
+
+        .info-table td {
+            padding: 1em;
+            margin: 1em;
+        }
+
+        .info-table td:nth-child(2n) {
+            text-align: right;
+        }
+
+        .main-container {
+            width: 90%;
+            margin: auto;
+        }
+
+        header {
+            width: 100%;
+            background: #25286C;
+            height: 60px;
+            position: sticky;
+            top: 0;
+        }
+
+        .header-brand {
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 1em;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-title {
+            padding-left: 1em;
+        }
+
+        .header-home {
+            padding: 1em;
+        }
+
+        .header-home:hover {
+            background: white;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+
+        window.onload = function (e) {
+            loadTable();
+        }
+        var companyData = [
+            {
+                "S No.": "1.",
+                "Name": "DEF",
+                "CMP Rs.": 86.09,
+                "P/E": 3.64,
+                "Mar Cap Rs.Cr.": 4391.3,
+                "Div Yld %": 65.69,
+                "NP Qtr Rs.Cr.": 160.55,
+                "Sales Qtr Rs.Cr.": 8.91,
+                "Qtr Sales Var %": 8156.34,
+                "ROCE %": 24.67,
+                "G Factor": 89.26
+            },
+            {
+                "S No.": "2.",
+                "Name": "JKLMNOPQ",
+                "CMP Rs.": 444.85,
+                "P/E": 19.81,
+                "Mar Cap Rs.Cr.": 7820.09,
+                "Div Yld %": 60.6,
+                "NP Qtr Rs.Cr.": 238.07,
+                "Sales Qtr Rs.Cr.": 15.66,
+                "Qtr Sales Var %": 9111.07,
+                "ROCE %": 1.12,
+                "G Factor": 31.94
+            },
+            {
+                "S No.": "3.",
+                "Name": "IJKLMNOP",
+                "CMP Rs.": 780.56,
+                "P/E": 8.18,
+                "Mar Cap Rs.Cr.": 632.89,
+                "Div Yld %": 26.68,
+                "NP Qtr Rs.Cr.": 68.29,
+                "Sales Qtr Rs.Cr.": 2.7,
+                "Qtr Sales Var %": 7816.53,
+                "ROCE %": 50.55,
+                "G Factor": 202.66
+            },
+            {
+                "S No.": "4.",
+                "Name": "KLMNOPQRS",
+                "CMP Rs.": 919.98,
+                "P/E": 5.45,
+                "Mar Cap Rs.Cr.": 5992.3,
+                "Div Yld %": 43.99,
+                "NP Qtr Rs.Cr.": 186.1,
+                "Sales Qtr Rs.Cr.": 17.11,
+                "Qtr Sales Var %": 4986.83,
+                "ROCE %": 12.68,
+                "G Factor": 70.56
+            },
+            {
+                "S No.": "5.",
+                "Name": "KLMNOPQR",
+                "CMP Rs.": 764.87,
+                "P/E": 17.09,
+                "Mar Cap Rs.Cr.": 6429.16,
+                "Div Yld %": 49.23,
+                "NP Qtr Rs.Cr.": 22.86,
+                "Sales Qtr Rs.Cr.": 16.68,
+                "Qtr Sales Var %": 4430.05,
+                "ROCE %": 30.49,
+                "G Factor": 205.89
+            },
+            {
+                "S No.": "6.",
+                "Name": "I",
+                "CMP Rs.": 485.17,
+                "P/E": 3.59,
+                "Mar Cap Rs.Cr.": 4324.42,
+                "Div Yld %": 70.67,
+                "NP Qtr Rs.Cr.": 218.93,
+                "Sales Qtr Rs.Cr.": 15.62,
+                "Qtr Sales Var %": 2339.37,
+                "ROCE %": 50.18,
+                "G Factor": 138.47
+            },
+            {
+                "S No.": "7.",
+                "Name": "IJKLMN",
+                "CMP Rs.": 831.46,
+                "P/E": 8.73,
+                "Mar Cap Rs.Cr.": 489.2,
+                "Div Yld %": 74.33,
+                "NP Qtr Rs.Cr.": 141.07,
+                "Sales Qtr Rs.Cr.": 12.27,
+                "Qtr Sales Var %": 8448.32,
+                "ROCE %": 18.82,
+                "G Factor": 271.18
+            },
+            {
+                "S No.": "8.",
+                "Name": "GHIJKL",
+                "CMP Rs.": 444.41,
+                "P/E": 13.97,
+                "Mar Cap Rs.Cr.": 1428.32,
+                "Div Yld %": 54.41,
+                "NP Qtr Rs.Cr.": 186.97,
+                "Sales Qtr Rs.Cr.": 6.74,
+                "Qtr Sales Var %": 7431.99,
+                "ROCE %": 49.83,
+                "G Factor": 1.28
+            },
+            {
+                "S No.": "9.",
+                "Name": "EFGH",
+                "CMP Rs.": 649.29,
+                "P/E": 19.28,
+                "Mar Cap Rs.Cr.": 4318.33,
+                "Div Yld %": 56.01,
+                "NP Qtr Rs.Cr.": 255.28,
+                "Sales Qtr Rs.Cr.": 13.98,
+                "Qtr Sales Var %": 2641.8,
+                "ROCE %": 72.66,
+                "G Factor": 55.67
+            },
+            {
+                "S No.": "10.",
+                "Name": "DEF",
+                "CMP Rs.": 32.34,
+                "P/E": 7.48,
+                "Mar Cap Rs.Cr.": 362.81,
+                "Div Yld %": 66.45,
+                "NP Qtr Rs.Cr.": 111.06,
+                "Sales Qtr Rs.Cr.": 19.36,
+                "Qtr Sales Var %": 8989.69,
+                "ROCE %": 37.6,
+                "G Factor": 182.3
+            }
+        ];
+        function loadTable() {
+            var tableElem = document.getElementById('companyList').innerHTML = `
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <td style="text-align: center">S No.</td>
+                            <td style="text-align: left">Name</td>
+                            <td>CMP Rs.</td>
+                            <td>P/E</td>
+                            <td>Mar Cap Rs.Cr.</td>
+                            <td>Div Yld %</td>
+                            <td>NP Qtr Rs.Cr.</td>
+                            <td>Sales Qtr Rs.Cr.</td>
+                            <td>Qtr Sales Var %	</td>
+                            <td>ROCE %	</td>
+                            <td>G Factor </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${renderTableRows()}
+                    </tbody>
+                </table>
+            `;
+        }
+        function renderTableRows() {
+            var i = 0, text = '';
+            while (i < 10) {
+                text += `
+                    <tr>
+                        <td style="text-align: center">${i + 1}.</td>
+                        <td style="text-align: left">${companyData[i]['Name']}</td>
+                        <td>${companyData[i]['CMP Rs.']}</td>
+                        <td>${companyData[i]['P/E']}</td>
+                        <td>${companyData[i]['Mar Cap Rs.Cr.']}</td>
+                        <td>${companyData[i]['Div Yld %']}</td>
+                        <td>${companyData[i]['NP Qtr Rs.Cr.']}</td>
+                        <td>${companyData[i]['Sales Qtr Rs.Cr.']}</td>
+                        <td>${companyData[i]['Qtr Sales Var %']}</td>
+                        <td>${companyData[i]['ROCE %']}</td>
+                        <td>${companyData[i]['G Factor']}</td>
+                    </tr>
+                `;
+                i++;
+            }
+            return text;
+        }
+        function getRandomNum(x = 1, y = 10, z) {
+            let n = Math.random() * (y - x) + x;
+            return z ? n.toFixed(z) : Math.ceil(n);
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header-brand">
+            <div class="header-left">
+                <a class="header-home" href="./../../dashboard.html">&#127968;</a>
+                <h3 class="header-title">Company Website</h3>
+            </div>
+            <a href="/" class="logoutLink">Logout</a>
+        </div>
+    </header>
+    <br />
+    <div class="main-container">
+        <h3>Company Details</h3>
+        <div class="card-wrapper">
+            <div class="display-flex">
+                <div style="font-size: 40px;">KLMNOPQRS</div>
+                <div style="padding: 10px 0 0 2em;">
+                    <b>$ 1234</b> <span style="color: red;">&nbsp;&nbsp;-0.24%</span>
+                    <div style="color: gray; font-size: 12px; padding-top: 5px;">09 Aug - close price</div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="display-flex">
+                <div style="flex: 3; border: 1px solid lightgray; margin-right: 2em;">
+                    <table width="100%" class="info-table">
+                        <tr>
+                            <td>Market Cap</td>
+                            <td>₹ 64,922 Cr.</td>
+                            <td>Current Price</td>
+                            <td>₹ 222</td>
+                            <td>High / Low</td>
+                            <td>₹ 286 / 113</td>
+                        </tr>
+                        <tr>
+                            <td>Stock P/E</td>
+                            <td>11.2</td>
+                            <td>Book Values</td>
+                            <td>₹ 87.5</td>
+                            <td>Dividend Yield</td>
+                            <td>2.60 %</td>
+                        </tr>
+                        <tr>
+                            <td>ROCE</td>
+                            <td>31.9 %
+                            </td>
+                            <td>ROE</td>
+                            <td>23.9 %
+                            </td>
+                            <td>Face Value</td>
+                            <td>₹ 1.00
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div style=" flex: 1">
+                    <p><b>About</b></p>
+                    <div class="font-14">
+                        NMDC is engaged in exploration and production of Iron Ore along with Diamond, production
+                        and
+                        sale of Sponge Iron and generation and sale of Wind Power.(Source : 202003 Annual Report
+                        Page No:119)
+                    </div>
+                    <br />
+                    <p><b>Verdict</b></p>
+                    <div style="color: mediumseagreen;"><b>BUY</b></div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <h3>What experts are saying</h3>
+        <div class="card-wrapper pros-cons">
+            <div class="pro-card pro-con-card">
+                <b>PROS</b>
+                <ul>
+                    <li>
+                        Company has a good return on equity (ROE) track record: 3 Years ROE 29.0%
+                    </li>
+                    <li>
+                        Company has been maintaining a healthy dividend payout of 39.5%
+                    </li>
+                    <li>
+                        Company has a good return on equity (ROE) track record: 3 Years ROE 29.0%
+                    </li>
+                    <li>
+                        Company has been maintaining a healthy dividend payout of 39.5%
+                    </li>
+                </ul>
+            </div>
+            <div class="con-card pro-con-card">
+                <b>CONS</b>
+                <ul>
+                    <li>
+                        The company has delivered a poor sales growth of 11.9% over past five years.
+                    </li>
+                    <li>
+                        Promoter holding has decreased over last 3 years: -7.50%
+                    </li>
+                    <li>
+                        The company has delivered a poor sales growth of 11.9% over past five years.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br />
+        <h3>Peer Comparison</h3>
+        <div id="companyList" class="card-wrapper">
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Welcome to Cypress Course!</title>
+    <style>
+        body {
+            font-family: 'Verdana';
+            background: #EBEFF5;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        ul li:hover {
+            background: lightgray;
+        }
+
+        .parentList>li {
+            display: inline-block;
+            border: 1px solid lightgray;
+            position: relative;
+        }
+
+        .parentList>li:hover ul {
+            display: block;
+            position: absolute;
+            left: 0;
+            padding: 0;
+            top: 50px;
+        }
+
+        .childList {
+            display: none;
+        }
+
+        .childList li {
+            border: 1px solid lightgray;
+        }
+
+        #selectedItemDetails {
+            font-size: 40px;
+            text-align: center;
+        }
+
+        .logoutLink {
+            position: absolute;
+            right: 20px;
+            text-decoration: none;
+            color: white;
+            padding: 1em;
+        }
+
+        .logoutLink:hover {
+            background: white;
+            color: #6667E6;
+        }
+
+        .posts {
+            position: relative;
+            flex: 3;
+        }
+
+        .postPagination {
+            position: absolute;
+            right: 10px;
+            right: 40px;
+            top: 30px;
+        }
+
+        .postItem {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid lightgray;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .postItemAction {
+            padding: 10px;
+        }
+
+        .postItem:hover,
+        .selectedPost {
+            background: lightgray;
+        }
+
+        .postTitle {
+            font-weight: bold;
+        }
+
+        .postBody {
+            font-size: 14px;
+        }
+
+        #postList {
+            background: white;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        #noPosts {
+            text-align: center;
+        }
+
+        #paginationSelection {
+            padding: 6px;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+
+        .emojiBlock {
+            margin-top: 10px;
+        }
+
+        .emojiIcon {
+            margin-right: 10px;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .emojiIcon:hover {
+            cursor: pointer;
+            background: lightgrey;
+        }
+
+        header {
+            width: 100%;
+            background: #6667E6;
+            height: 60px;
+            position: sticky;
+            top: 0;
+        }
+
+        .header-brand {
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 1em;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-title {
+            padding-left: 1em;
+        }
+
+        .header-home {
+            padding: 1em;
+        }
+
+        .header-home:hover {
+            background: white;
+            cursor: pointer;
+        }
+
+        .main-container {
+            display: flex;
+        }
+
+        .profile-info {
+            flex: 1;
+            background: white;
+            margin: 20px 0 0 20px;
+            position: relative;
+        }
+
+        .profile-img {
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            top: 100px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .profile-text {
+            text-align: center;
+            padding: 2.5em 10px 0;
+        }
+
+        .profile-text h4 {
+            margin-bottom: 8px;
+        }
+
+        .font-12 {
+            font-size: 12px;
+        }
+
+        .font-14 {
+            font-size: 14px;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2em 0 1em;
+            border-bottom: 1px solid lightgrey;
+            margin: 0 10px;
+        }
+
+        .add-links {
+            padding: 1em 0;
+            background: #EBEFF5;
+            color: grey;
+            text-align: center;
+        }
+
+        .add-links ul {}
+
+        .add-links ul li {
+            display: inline-block;
+        }
+    </style>
+    <script>
+        window.onload = function (e) {
+            loadPosts();
+        }
+        var postList = [];
+        var selectedPage = 1, perPagePosts = '5';
+        function selectItem(event) {
+            console.log(event)
+            document.getElementById("selectedItemDetails").innerText = event.innerText;
+        }
+        function loadPosts() {
+            fetch('https://jsonplaceholder.typicode.com/posts')
+                .then(response => response.json())
+                .then(json => {
+                    // console.log(json)
+                    postList = [...json];
+                    renderPostList(json)
+                })
+        }
+        function renderPostList(json) {
+            var text = json.slice(0, perPagePosts).map((post, i) => {
+                return `<div class="postItem" id="postItem-${i + 1}" onclick="handlePostClick(${i + 1})" onDblClick="handleDblClick(${i})">
+                            <div>
+                                <div class="postTitle">${post.title}</div>
+                            <div class="postBody">${post.body}</div>
+                            <div class="emojiBlock">
+                                <span class="emojiIcon">&#129505; ${Math.ceil(Math.random() * 10)}</span>
+                                <span class="emojiIcon">&#128077; ${Math.ceil(Math.random() * 10)}</span>
+                                <span class="emojiIcon">&#128078; ${Math.ceil(Math.random() * 10)}</span>
+                                <span class="emojiIcon">&#128514; ${Math.ceil(Math.random() * 10)}</span>
+                                </div>
+                            </div>
+                                <div>
+                                    <a href="Javascript:void(0)" class="postItemAction" onclick="openPost(${i})">Details</a>
+                                    </div>
+                                <div>
+                                    <a href="Javascript:void(0)" class="postItemAction" onclick="deletePost(${i})">Delete</a>
+                                    </div>
+                            </div>`;
+            })
+            document.getElementById('postList').innerHTML = `<h3>Recent Posts</h3><br />${text.join('')}`;
+            document.getElementById('noPosts').innerHTML = ``;
+        }
+        function openPost(i) {
+
+            window.location.href = "./post.html?postId=" + (i + 1);
+        }
+        function deletePost(i) {
+            postList.splice(i, 1);
+            removeSelection();
+            renderPostList(postList);
+        }
+        function handleDblClick(i) {
+            window.location.href = "./post.html?postId=" + (i + 1);
+        }
+        function handlePostClick(i) {
+            removeSelection();
+            var el = document.getElementById(`postItem-${i}`);
+            if (el.classList.contains('selectedPost')) {
+                el.classList.remove('selectedPost');
+            } else {
+                // el.classList.add('selectedPost');
+            }
+        }
+        function removeSelection() {
+            Array.from(document.querySelectorAll('.selectedPost')).forEach((el) => {
+                el.classList.remove('selectedPost');
+            })
+        }
+        function handlePagination() {
+            var select = document.getElementById('paginationSelection');
+            perPagePosts = select.value == 'All' ? postList?.length : select.value;
+            renderPostList(postList);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- <ul class="parentList">
+        <li>
+            Fruits
+            <ul class="childList">
+                <li onclick="selectItem(this)">Apple</li>
+                <li onclick="selectItem(this)">Banana</li>
+            </ul>
+        </li>
+        <li>
+            Vegetables
+            <ul class="childList">
+                <li onclick="selectItem(this)">Tomato</li>
+                <li onclick="selectItem(this)">Potato</li>
+            </ul>
+        </li>
+    </ul> -->
+    <!-- <br /><br /><br /> -->
+    <!-- <div style="text-align: center;">Selected Item</div>
+    <div id="selectedItemDetails">
+        None
+    </div> -->
+    <header>
+        <div class="header-brand">
+            <div class="header-left">
+                <a class="header-home" href="./../../dashboard.html">&#127968;</a>
+                <h3 class="header-title">Social Media Website</h3>
+            </div>
+            <a href="/" class="logoutLink">Logout</a>
+        </div>
+    </header>
+    <br />
+    <!-- <a href="/company.html">Top 10 Companies</a> -->
+    <br /><br />
+    <div class="main-container">
+        <div class="profile-info">
+            <div class="profile-banner">
+                <img src="./../../assets/profile-banner.png" width="100%" />
+                <img src="./../../assets/user.png" class="profile-img" />
+                <div class="profile-text">
+                    <h4>Cypress Coder</h4>
+                    <div class="font-12">Cypress Automation Tester and ABC.com</div>
+                    <br />
+                    <div class="font-14">I'd love to change the world, but they wont give me the source code</div>
+                </div>
+            </div>
+            <div>
+                <div class="profile-stats">
+                    <div style="flex: 1;"><b>250</b>
+                        <div class="font-14">Posts</div>
+                    </div>
+                    <div style="flex: 1;"><b>2.5K</b>
+                        <div class="font-14">Posts</div>
+                    </div>
+                    <div style="flex: 1;"><b>5K</b>
+                        <div class="font-14">Posts</div>
+                    </div>
+                </div>
+                <div style="border-bottom: 1px solid lightgray;">
+                    <ul>
+                        <li>
+                            Feed
+                        </li>
+                        <li>
+                            Connections
+                        </li>
+                        <li>
+                            Latest News
+                        </li>
+                        <li>
+                            Events
+                        </li>
+                        <li>
+                            Groups
+                        </li>
+                        <li>
+                            Notifications
+                        </li>
+                        <li>
+                            Settings
+                        </li>
+                    </ul>
+                </div>
+                <div style="text-align: center; padding: 1em;">
+                    <a href="Javascript:void(0)">View Profile</a>
+                </div>
+            </div>
+            <div class="add-links">
+                <ul style="margin: 0; padding: 0;" class="font-12">
+                    <li>About</li>
+                    <li>Settings</li>
+                    <li>Support</li>
+                    <li>Docs</li>
+                    <li>Privacy & Terms</li>
+                </ul>
+            </div>
+        </div>
+        <div class="posts">
+            <div id="noPosts">
+                Loading Posts...
+            </div>
+            <div class="postPagination">Show
+                <select onchange="handlePagination()" id="paginationSelection">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="All">All</option>
+                </select>
+                Posts
+            </div>
+            <div id="postList" class="postList"></div>
+        </div>
+    </div>
+</body>
+
+</html>

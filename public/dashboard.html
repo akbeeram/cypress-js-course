@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Welcome to Cypress Course!</title>
+    <style>
+        body {
+            font-family: 'Verdana';
+            background: #EBEFF5;
+        }
+
+        .site-link {
+            padding: 2em;
+            border: 1px solid lightgray;
+            display: inline-block;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            margin: 1em;
+            background: white;
+        }
+
+        .site-link:hover {
+            background: mediumseagreen;
+            border: 1px solid lightgray;
+            color: white;
+            cursor: pointer;
+        }
+
+        .hero-banner {
+            text-align: center;
+            padding: 4em;
+        }
+
+        .siteList {
+            display: flex;
+            width: 800px;
+            margin: auto;
+        }
+
+        .logoutLink {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        window.onload = function (e) {
+            // loadPosts();
+        }
+        function openSite(siteType) {
+            switch (siteType) {
+                case 'Social Media':
+                    window.location.href = './sites/social-media/social-media.html';
+                    break;
+                case 'Company':
+                    window.location.href = './sites/company/company.html';
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <a href="/" class="logoutLink">Logout</a>
+    <div class="hero-banner">
+        <h1>Welcome to Cypress Automation Testing</h1>
+        <div>To get started, choose you App</div>
+    </div>
+    <div class="siteList">
+        <div onclick="openSite('Social Media')" class="site-link">
+            Social Media
+        </div>
+        <div onclick="openSite('Company')" class="site-link">
+            Company Deails
+        </div>
+    </div>
+</body>
+
+</html>
