@@ -181,58 +181,64 @@ describe('cypress other commands spec', () => {
             cy.intercept('https://jsonplaceholder.typicode.com/posts/1/comments', [comments[0], comments[1]]);
         });
     });
+
     it('.spy', () => {
         const obj = {
-            name: 'cypress',
+            name: 'Cypress',
             getName: function () {
-                return this.name;
+                return this.name + 'Course'
             }
-        }
+        };
         cy.spy(obj, 'getName');
         obj.getName();
         expect(obj.getName).to.be.called;
 
-        cy.visit('http://127.0.0.1:8080').wait(2000);
-        cy.window().then((w) => {
-            cy.spy(w, 'handleBtnClick').as('mySpy');
-            cy.spy(w, 'handleKeyUp').as('keyUpSpy');
-        });
-        cy.get('#email').type('anil@email.com').wait(500);
-        cy.get('#username').type('anil@email.com').wait(500);
-        cy.get('#password').type('anil.com').wait(500);
-        cy.get('input[type=radio]').first().check().wait(500);
-        cy.get('#loginBtn').click().wait(500);
-        cy.get('@mySpy').should('be.called')
-        // cy.get('@keyUpSpy').should('have.callCount', 40)
-    });
-    it.only('.stub', () => {
-        // cy.visit('http://127.0.0.1:8080').wait(2000);
+
+        // cy.visit('http://127.0.0.1:8080/public/index.html').wait(2000)
         // cy.window().then((w) => {
-        //     cy.stub(w, 'handleBtnClick').returns(null).as('asdf');
-        // });
+        //     cy.spy(w, 'handleBtnClick').as('mySpy');
+        // })
         // cy.get('#email').type('anil@email.com').wait(500);
         // cy.get('#username').type('anil@email.com').wait(500);
-        // cy.get('#password').type('anil.com').wait(500);
+        // cy.get('#password').type('anill.com').wait(500);
         // cy.get('input[type=radio]').first().check().wait(500);
-        // cy.get('#loginBtn').click();
-        // cy.get('@asdf').should('be.called')
+        // cy.get('#loginBtn').click().wait(500);
 
-        // stub object methods
-        var obj = {
-            name: 'cypress',
-            getName: function (msg = "") {
-                return this.name + msg;
-            }
-        }
-        // cy.stub(obj, 'getName').returns('Anil')
-        cy.stub(obj, 'getName', () => {
-            return 'Sample Msg'
-        })
-        var msg = obj.getName();
-        expect(obj.getName).to.be.called
-        expect(msg).to.equal('Sample Msg')
+        // cy.get('@mySpy').should('have.been.called')
+
+
+
+        // cy.visit('http://127.0.0.1:8080/public/sites/social-media/post.html?postId=1')
+        // cy.window().then((w) => {
+        //     cy.spy(w, 'fetch').as('mySpy');
+        // })
+
+        // cy.get('@mySpy').should('have.been.called')
+        // cy.get('@mySpy').should('have.been.calledWith', 'https://jsonplaceholder.typicode.com/posts/1/comments')
+
     });
-    it('Cypress global obj', () => {
-        // console.log(Cypress)
+
+    it('.stub', () => {
+        const obj = {
+            name: 'Cypress',
+            getName: function () {
+                return this.name;
+            }
+        };
+        // cy.stub(obj, 'getName').returns('Course');
+        cy.stub(obj, 'getName', () => {
+            return 'Javascript'
+        });
+        var msg = obj.getName();
+        cy.log(msg)
+        expect(msg).to.equal('Javascript');
+
+    });
+
+
+    it('custom command', () => {
+        // console.log(Cypress);
+        cy.visit('http://127.0.0.1:8080/public/');
+        cy.selectRadioWithLabel('female');
     });
 });

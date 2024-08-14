@@ -23,3 +23,20 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('selectFirstRadio', () => {
+    cy.get('input[type=radio]').first().check();
+})
+Cypress.Commands.add('selectRadioWithLabel', (label) => {
+    cy.get('input[value=' + label + ']').check();
+})
+Cypress.Commands.add('loginToMyApp', (email, username, pwd) => {
+    cy.get('#email').type(email).wait(500);
+    cy.get('#username').type(username).wait(500);
+    cy.get('#password').type(pwd).wait(500);
+    cy.selectFirstRadio().wait(500);
+    cy.get('#loginBtn').click().wait(500);
+});
+Cypress.Commands.add('openTestApp', (appName) => {
+    cy.contains(appName).click();
+})
