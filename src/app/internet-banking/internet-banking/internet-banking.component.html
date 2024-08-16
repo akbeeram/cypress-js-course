@@ -1,0 +1,167 @@
+<app-header [title]="'Test Bank'" [homeUrl]="'/internet-banking/home'"></app-header>
+<div class="main-container">
+    <div style="display: flex;">
+        <div style="flex: 2;margin-right: 1em;">
+            <div class="card-wrapper">
+                <div class="bal-container">
+                    <div class="flex-1 pad-1 text-center"
+                        [ngStyle]="{'background': currentBalanceTab == 0 ? '#EDF7FC' : ''}"
+                        (click)="currentBalanceTab = 0;">
+                        Savings A/C<br />
+                        $ 1,00,000.00
+                    </div>
+                    <div class="flex-1 pad-1 text-center"
+                        [ngStyle]="{'background': currentBalanceTab == 1 ? '#EDF7FC' : ''}"
+                        (click)="currentBalanceTab = 1;">
+                        Current A/C<br />
+                        <span class="font-12">Open your current account now</span>
+                    </div>
+                </div>
+                <div class="flex bal-details" *ngIf="currentBalanceTab == 0"
+                    [ngStyle]="{'background': currentBalanceTab == 0 ? '#EDF7FC' : ''}">
+                    <div class="flex-1 pad-1">
+                        <div class="font-12">Savings</div>1234234234213424
+                    </div>
+                    <div class="flex-1 text-right pad-1">
+                        $ 1,00,000.00
+                    </div>
+                </div>
+                <div class="flex bal-details" *ngIf="currentBalanceTab == 1"
+                    [ngStyle]="{'background': currentBalanceTab == 1 ? '#EDF7FC' : ''}">
+                    <div class="flex-1 pad-1 font-12">
+                        Power your business and maximise your cash flow with our Current Accounts.
+                        <ul>
+                            <li>Efficiently manage cash</li>
+                            <li>Simplify payments and collections</li>
+                            <li>Access a range of free banking services</li>
+                        </ul>
+                        <a href="Javascript:void(0)">Know More</a>
+                    </div>
+                    <div class="flex-1 text-right pad-1">
+                        <img src="./../../assets/curr-acc.png" width="200px" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="card-wrapper acc-accordion" id="acc-accordion">
+                <ul id="acc-accordion-ul">
+                    <li
+                        [ngStyle]="{'backgroundImage': openAccordions.includes(0) ? 'linear-gradient(#EDF7FC, transparent)' : ''}">
+                        <div (click)="openAccAccordion(0)" class="flex">
+                            <div class="flex-1">Savings Scheme A/c</div>
+                            <div><i class="fa"
+                                    [ngClass]="{'fa-chevron-down' : !openAccordions.includes(0), 'fa-chevron-up' : openAccordions.includes(0)}"></i>
+                            </div>
+                        </div>
+                        <div class="hidden-acc-accordion" id="acc_0"
+                            [ngStyle]="{'display': openAccordions.includes(0) ? 'block' : 'none'}">
+                            <p class="font-14">Public Provident Funds (PPF)</p>
+                            <br />
+                            <div style="display: flex; justify-content: space-between;">
+                                <div>
+                                    <div style="font-size: 10px;">PPF Account</div>
+                                    <div class="font-14">12654676545765</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 10px;">Balance</div>
+                                    <div>$1,00,000.00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li
+                        [ngStyle]="{'backgroundImage': openAccordions.includes(1) ? 'linear-gradient(#EDF7FC, transparent)' : ''}">
+                        <div (click)="openAccAccordion(1)" class="flex">
+                            <div class="flex-1">Fixed Deposit</div>
+                            <div><i class="fa"
+                                    [ngClass]="{'fa-chevron-down' : !openAccordions.includes(0), 'fa-chevron-up' : openAccordions.includes(0)}"></i>
+                            </div>
+                        </div>
+                        <div class="hidden-acc-accordion" id="acc_1"
+                            [ngStyle]="{'display': openAccordions.includes(1) ? 'block' : 'none'}">
+                            <br />
+                            <div style="text-align: right; margin-bottom: 1em;">
+                                <span class="font-12"><a href="./open-deposit.html">Open Deposit</a></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 1em;">
+                                <div>
+                                    <div class="font-14">Overview(2)</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 10px;">Balance</div>
+                                    <div>$2,00,000.00</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 1em;">
+                                <div>
+                                    <div style="font-size: 10px;">Fixed Deposit</div>
+                                    <div class="font-14">12654676545765</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 10px;">Amount</div>
+                                    <div>$1,00,000.00</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <div>
+                                    <div style="font-size: 10px;">Fixed Deposit</div>
+                                    <div class="font-14">12654676545765</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 10px;">Amount</div>
+                                    <div>$1,00,000.00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>Recurring Deposit</li>
+                    <li>Mutual Fund</li>
+                    <li>Loans</li>
+                    <li>Credit Cards</li>
+                    <li>Demat</li>
+                </ul>
+
+            </div>
+            <br />
+            <div class="card-wrapper" style="padding: 1em;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1em;">
+                    <span>Your Offers</span>
+                    <span class="font-12"><a href="Javascript:void(0)">View All</a></span>
+                </div>
+                <div style="display: flex;" class="font-12">
+                    <div
+                        style="flex: 1; background: #DDECFF;margin-right: 0.5em; padding: 1em; border-radius: 5px; position: relative;">
+                        <b>Discover your exclusive Loan Offers</b>
+                        <br /><br />
+                        Curated for you
+                        <br /><br /><br />
+                        <button type="button" class="offers-btn">Check Now</button>
+                        <img src="./../../assets/coins-bag.png" class="offers-img" />
+                    </div>
+                    <div style="flex: 1; background: #FFE6C6; padding: 1em; border-radius: 5px; position: relative;">
+                        <b>Discover your exclusive Card Offers</b>
+                        <br /><br />
+                        Curated for you
+                        <br /><br /><br />
+                        <button type="button" class="offers-btn">Check Now</button>
+                        <img src="./../../assets/card-coins.png" class="offers-img" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="flex: 1;">
+            <div class="card-wrapper pad-1">
+                <div>Quick Links</div>
+                <br />
+                <ul class="font-12 quick-links">
+                    <li><a href="Javascript:void(0)">Open FD</a></li>
+                    <li><a href="Javascript:void(0)">Add Payee</a></li>
+                    <li><a href="Javascript:void(0)">Money Transfer</a></li>
+                    <li><a href="Javascript:void(0)">Recharge</a></li>
+                    <li><a href="Javascript:void(0)">Apply for Loan</a></li>
+                    <li><a href="Javascript:void(0)">Report Fraud and Dispute</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

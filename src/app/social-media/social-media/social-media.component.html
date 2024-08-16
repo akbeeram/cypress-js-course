@@ -1,0 +1,69 @@
+<app-header [title]="'Social Media'" [homeUrl]="'/social-media/home'"></app-header>
+<div class="main-container">
+    <div class="profile-info">
+        <div class="profile-banner">
+            <img src="./../../assets/profile-banner.png" width="100%" />
+            <img src="./../../assets/user.png" class="profile-img" />
+            <div class="profile-text">
+                <h4>Cypress Coder</h4>
+                <div class="font-12">Cypress Automation Tester and ABC.com</div>
+                <br />
+                <div class="font-14">I'd love to change the world, but they wont give me the source code</div>
+            </div>
+        </div>
+        <div>
+            <div class="profile-stats">
+                <div style="flex: 1;"><b>250</b>
+                    <div class="font-12">Posts</div>
+                </div>
+                <div style="flex: 1;"><b>2.5K</b>
+                    <div class="font-12">Followers</div>
+                </div>
+                <div style="flex: 1;"><b>5K</b>
+                    <div class="font-12">Following</div>
+                </div>
+            </div>
+            <div style="border-bottom: 1px solid lightgray;">
+                <ul>
+                    <li>
+                        Feed
+                    </li>
+                    <li>
+                        Connections
+                    </li>
+                    <li>
+                        Latest News
+                    </li>
+                    <li>
+                        Events
+                    </li>
+                    <li>
+                        Groups
+                    </li>
+                    <li>
+                        Notifications
+                    </li>
+                    <li>
+                        Settings
+                    </li>
+                </ul>
+            </div>
+            <div style="text-align: center; padding: 1em;">
+                <a href="Javascript:void(0)">View Profile</a>
+            </div>
+        </div>
+        <div class="add-links">
+            <ul style="margin: 0; padding: 0;" class="font-12">
+                <li>About</li>
+                <li>Settings</li>
+                <li>Support</li>
+                <li>Docs</li>
+                <li>Privacy & Terms</li>
+            </ul>
+        </div>
+    </div>
+    <div style="flex: 3;">
+        <app-post-list></app-post-list>
+        <router-outlet></router-outlet>
+    </div>
+</div>

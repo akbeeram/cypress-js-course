@@ -1,0 +1,221 @@
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    padding: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+ul li:hover {
+    background: lightgray;
+}
+
+.parentList>li {
+    display: inline-block;
+    border: 1px solid lightgray;
+    position: relative;
+}
+
+.parentList>li:hover ul {
+    display: block;
+    position: absolute;
+    left: 0;
+    padding: 0;
+    top: 50px;
+}
+
+.childList {
+    display: none;
+}
+
+.childList li {
+    border: 1px solid lightgray;
+}
+
+#selectedItemDetails {
+    font-size: 40px;
+    text-align: center;
+}
+
+.logoutLink {
+    position: absolute;
+    right: 20px;
+    text-decoration: none;
+    color: white;
+    padding: 1em;
+}
+
+.logoutLink:hover {
+    background: white;
+    color: #6667E6;
+}
+
+.posts {
+    position: relative;
+    flex: 3;
+}
+
+.postPagination {
+    position: absolute;
+    right: 10px;
+    right: 40px;
+    top: 30px;
+}
+
+.postItem {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.postItemAction {
+    padding: 10px;
+}
+
+.postItem:hover,
+.selectedPost {
+    background: lightgray;
+}
+
+.postTitle {
+    font-weight: bold;
+}
+
+.postBody {
+    font-size: 14px;
+}
+
+#postList {
+    background: white;
+    margin: 20px;
+    padding: 20px;
+}
+
+#noPosts {
+    text-align: center;
+}
+
+#paginationSelection {
+    padding: 6px;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+.emojiBlock {
+    margin-top: 10px;
+}
+
+.emojiIcon {
+    margin-right: 10px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.emojiIcon:hover {
+    cursor: pointer;
+    background: lightgrey;
+}
+
+header {
+    width: 100%;
+    background: #6667E6;
+    height: 60px;
+    position: sticky;
+    top: 0;
+}
+
+.header-brand {
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-title {
+    padding-left: 1em;
+}
+
+.header-home {
+    padding: 1em;
+}
+
+.header-home:hover {
+    background: white;
+    cursor: pointer;
+}
+
+.main-container {
+    display: flex;
+}
+
+.profile-info {
+    flex: 1;
+    background: white;
+    margin: 20px 0 0 20px;
+    position: relative;
+}
+
+.profile-img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    top: 100px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-text {
+    text-align: center;
+    padding: 2.5em 10px 0;
+}
+
+.profile-text h4 {
+    margin-bottom: 8px;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+.font-14 {
+    font-size: 14px;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2em 0 1em;
+    border-bottom: 1px solid lightgrey;
+    margin: 0 10px;
+}
+
+.add-links {
+    padding: 1em 0;
+    background: #EBEFF5;
+    color: grey;
+    text-align: center;
+}
+
+.add-links ul {}
+
+.add-links ul li {
+    display: inline-block;
+}

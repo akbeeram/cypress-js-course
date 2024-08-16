@@ -1,0 +1,141 @@
+<app-header [title]="'Company Details'" [homeUrl]="'/company-details/home'"></app-header>
+<div class="main-container">
+    <h3>Company Details</h3>
+    <div class="card-wrapper">
+        <div class="display-flex">
+            <div style="font-size: 40px;">KLMNOPQRS</div>
+            <div style="padding: 10px 0 0 2em;">
+                <b>$ 1234</b> <span style="color: red;">&nbsp;&nbsp;-0.24%</span>
+                <div style="color: gray; font-size: 12px; padding-top: 5px;">09 Aug - close price</div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="display-flex">
+            <div style="flex: 3; border: 1px solid lightgray; margin-right: 2em;">
+                <table width="100%" class="info-table">
+                    <tr>
+                        <td>Market Cap</td>
+                        <td>₹ 64,922 Cr.</td>
+                        <td>Current Price</td>
+                        <td>₹ 222</td>
+                        <td>High / Low</td>
+                        <td>₹ 286 / 113</td>
+                    </tr>
+                    <tr>
+                        <td>Stock P/E</td>
+                        <td>11.2</td>
+                        <td>Book Values</td>
+                        <td>₹ 87.5</td>
+                        <td>Dividend Yield</td>
+                        <td>2.60 %</td>
+                    </tr>
+                    <tr>
+                        <td>ROCE</td>
+                        <td>31.9 %
+                        </td>
+                        <td>ROE</td>
+                        <td>23.9 %
+                        </td>
+                        <td>Face Value</td>
+                        <td>₹ 1.00
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style=" flex: 1">
+                <p><b>About</b></p>
+                <div class="font-14">
+                    NMDC is engaged in exploration and production of Iron Ore along with Diamond, production
+                    and
+                    sale of Sponge Iron and generation and sale of Wind Power.(Source : 202003 Annual Report
+                    Page No:119)
+                </div>
+                <br />
+                <p><b>Verdict</b></p>
+                <div style="color: mediumseagreen;"><b>BUY</b></div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <h3>What experts are saying</h3>
+    <div class="card-wrapper pros-cons">
+        <div class="pro-card pro-con-card">
+            <b>PROS</b>
+            <ul>
+                <li>
+                    Company has a good return on equity (ROE) track record: 3 Years ROE 29.0%
+                </li>
+                <li>
+                    Company has been maintaining a healthy dividend payout of 39.5%
+                </li>
+                <li>
+                    Company has a good return on equity (ROE) track record: 3 Years ROE 29.0%
+                </li>
+                <li>
+                    Company has been maintaining a healthy dividend payout of 39.5%
+                </li>
+            </ul>
+        </div>
+        <div class="con-card pro-con-card">
+            <b>CONS</b>
+            <ul>
+                <li>
+                    The company has delivered a poor sales growth of 11.9% over past five years.
+                </li>
+                <li>
+                    Promoter holding has decreased over last 3 years: -7.50%
+                </li>
+                <li>
+                    The company has delivered a poor sales growth of 11.9% over past five years.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br />
+    <h3>Peer Comparison</h3>
+    <div id="companyList" class="card-wrapper">
+        <table width="100%" cellspacing="0" cellpadding="0" class="companyProfitListTable">
+            <thead>
+                <tr>
+                    <td *ngFor="let item of companyData[0] | keyvalue : returnZero;">
+                        {{item?.key}}
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of companyData; let i = index;" [id]="'profitRow_' + i">
+                    <td *ngFor="let obj of item | keyvalue : returnZero; let j = index;"
+                        [ngStyle]="{'text-align': j == 0 ? 'center' : j == 1 ? 'left' : 'right'}">
+                        {{obj?.value}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <h3>Quarterly Results</h3>
+    <div id="companyProfitList" class="card-wrapper">
+        <table width="100%" cellspacing="0" cellpadding="0" class="companyProfitListTable">
+            <thead>
+                <tr>
+                    <td *ngFor="let item of companyResultsData[0] | keyvalue : returnZero;">
+                        {{item?.key == "rowName" ? "" : item.key}}
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of companyResultsData; let i = index;"
+                    [ngStyle]="{'borderTop': isFirstHiddenRow(i) ? '1px solid lightgray' : '',
+                    'borderBottom': isLastHiddenRow(i) ? '1px solid lightgray' : '',
+                        'display': profitTableAccordionData.allChildren.includes(i) ? isRowOpen(i) ? 'table-row' : 'none' : 'table-row'}" [id]="'companyResultsRow_' + i">
+                    <td *ngFor="let item of row | keyvalue : returnZero; let j = index;"
+                        (click)="handleOpenClick(item.value)"
+                        [ngClass]="{'profitRowHasChildren': !!getExpandText(item.value)}">
+                        {{item?.value}} <span *ngIf="j == 0">{{getExpandText(item.value)}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

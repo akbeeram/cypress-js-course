@@ -1,7 +1,7 @@
 describe('Company details Test Suite', () => {
 
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:8080/').wait(1000);
+    cy.visit('http://localhost:4200/').wait(1000);
     cy.loginToMyApp('email@google.com', 'username', 'test2');
     cy.wait(1000);
     // cy.openTestApp('Company Details');

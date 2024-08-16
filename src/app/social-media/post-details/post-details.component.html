@@ -1,0 +1,60 @@
+<app-header [title]="'Post Details'" [homeUrl]="'/social-media/home'"></app-header>
+<div class="postItem">
+    <div id="postDetail">
+        <div class="postTitle">{{postDetails.title}}</div>
+        <div class="postBody">
+            {{postDetails.body}}
+            <div style="display: flex; justify-content: space-between;">
+                <div class="emojiBlock">
+                    <span class="emojiIcon"><i class="fa fa-comment-o"></i> {{postDetails?.comments}}</span>
+                    <span class="emojiIcon"><i class="fa fa-heart-o"></i> {{postDetails?.likes}}</span>
+                    <span class="emojiIcon"><i class="fa fa-share-alt"></i> {{postDetails?.shares}}</span>
+                    <span class="emojiIcon"><i class="fa fa-bookmark-o"></i> {{postDetails?.saves}}</span>
+                </div>
+                <div>
+                    <a href="Javascript:void(0)" (click)="openCommenEditor()">{{commentEditorOpen ? 'Close' :
+                        'Reply'}}</a>
+                </div>
+            </div>
+            <div *ngIf="commentEditorOpen">
+                <div class="commentEditor">
+                    <h3>New Comment</h3>
+                    <div style="display: flex; margin-bottom: 20px;">
+                        <div style="flex: 1">
+                            <label>Title <span class="mand-span">*</span></label>
+                            <input type="text" id="newCommentTitle" [(ngModel)]="title" />
+                        </div>
+                        <div style="flex: 1">
+                            <label>Email <span class="mand-span">*</span></label>
+                            <input type="text" id="newCommentEmail" [(ngModel)]="email" />
+                        </div>
+                    </div>
+                    <label>Comment <span class="mand-span">*</span></label>
+                    <textarea rows="4" cols="60" id="newCommentContent" [(ngModel)]="comment"></textarea>
+                    <br /><br />
+                    <button type="button" class="commentReplyButton" id="commentReplyButton"
+                        [attr.disabled]="!title || !email || !comment ? true : null"
+                        (click)="addComment()">Reply</button>
+                    <span id="errMsgDiv"></span>
+                </div>`
+            </div>
+        </div>
+    </div>
+    <div id="postComments">
+        <div class="commentItem" *ngFor="let c of postComments;">
+            <div class="commentItemIcon">
+                {{c.name[0]}}
+            </div>
+            <div style="flex: 1;">
+                <div style="margin-bottom: 10px;"><b>{{c.name}}</b> | <i>{{c.email}}</i></div>
+                <div style="font-size: 12px;">{{c.body}}</div>
+                <div class="emojiBlock">
+                    <span class="emojiIcon"><i class="fa fa-comment-o"></i> {{c?.comments}}</span>
+                    <span class="emojiIcon"><i class="fa fa-heart-o"></i> {{c?.likes}}</span>
+                    <span class="emojiIcon"><i class="fa fa-share-alt"></i> {{c?.shares}}</span>
+                    <span class="emojiIcon"><i class="fa fa-bookmark-o"></i> {{c?.saves}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

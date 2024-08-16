@@ -1,22 +1,45 @@
 {
   "name": "cypress-js-course",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "http-server": "http-server",
-    "serve": "nodemon ./public/index.js",
-    "live-server": "live-server --open=/public"
+    "automation": "run-s tab:ui-app tab:cypress",
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "tab:ui-app": "ttab -t 'UI App' npm run start",
+    "tab:cypress": "ttab -t 'Cypress' npx cypress open"
   },
-  "author": "",
-  "license": "ISC",
+  "private": true,
   "dependencies": {
-    "http-server": "^14.1.1",
-    "live-server": "^1.2.2"
+    "@angular/animations": "^16.2.0",
+    "@angular/common": "^16.2.0",
+    "@angular/compiler": "^16.2.0",
+    "@angular/core": "^16.2.0",
+    "@angular/forms": "^16.2.0",
+    "@angular/platform-browser": "^16.2.0",
+    "@angular/platform-browser-dynamic": "^16.2.0",
+    "@angular/router": "^16.2.0",
+    "font-awesome": "^4.7.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.13.0"
   },
   "devDependencies": {
-    "cypress": "^13.13.1",
-    "nodemon": "^3.1.4"
+    "@angular-devkit/build-angular": "^16.2.1",
+    "@angular/cli": "~16.2.1",
+    "@angular/compiler-cli": "^16.2.0",
+    "@types/jasmine": "~4.3.0",
+    "cypress": "^13.13.3",
+    "jasmine-core": "~4.6.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "npm-run-all": "^4.1.5",
+    "ttab": "^0.9.0",
+    "typescript": "~5.1.3"
   }
 }

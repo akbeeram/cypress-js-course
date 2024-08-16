@@ -1,0 +1,134 @@
+.postItem {
+    background: white;
+    width: 700px;
+    margin: auto;
+    padding: 50px 2em;
+}
+
+.commentItem {
+    margin: auto;
+    width: 500px;
+    padding: 15px;
+    border: 1px solid lightgray;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.commentItemIcon {
+    width: 65px;
+    height: 65px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: lightgray;
+    border-radius: 50%;
+    margin-right: 20px;
+    text-transform: uppercase;
+}
+
+.postTitle {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.postBody {
+    margin-bottom: 25px;
+}
+
+.backLink {
+    margin-top: 25px;
+}
+
+.logoutLink {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.emojiBlock {
+    margin-top: 10px;
+}
+
+.emojiIcon {
+    margin-right: 10px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.emojiIcon:hover {
+    cursor: pointer;
+    background: lightgrey;
+}
+
+.commentEditor {
+    border: 1px solid lightgray;
+    width: 530px;
+    margin: auto;
+    padding: 10px 20px 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    resize: none;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+input[type="text"] {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 10px;
+    width: 75%;
+}
+
+label {
+    display: block;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+.commentReplyButton {
+    padding: 10px 20px;
+    border-radius: 10px;
+    outline: none;
+    border: 0;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    color: white;
+    background: mediumseagreen;
+}
+
+.commentReplyButton:disabled,
+.commentReplyButton:disabled:hover {
+    background: lightgray;
+    color: grey;
+    cursor: not-allowed;
+}
+
+.commentReplyButton:hover {
+    cursor: pointer;
+    color: white;
+    background: green;
+}
+
+.mand-span {
+    color: red;
+}
+
+#errMsgDiv {
+    padding: 10px;
+    color: red;
+    background: rgba(255, 0, 0, 0.2);
+    border-radius: 5px;
+    font-size: 13px;
+    display: none;
+    margin-left: 20px;
+}
