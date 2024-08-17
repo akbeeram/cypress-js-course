@@ -10,6 +10,7 @@ import { CompanyDetailsModule } from './company-details/company-details.module';
 import { InternetBankingModule } from './internet-banking/internet-banking.module';
 import { OnlineShoppingModule } from './online-shopping/online-shopping.module';
 import { FormsModule } from '@angular/forms';
+import { AppCommonModule } from './common/common.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AppCommonModule,
     FormsModule,
     SocialMediaModule,
     CompanyDetailsModule,

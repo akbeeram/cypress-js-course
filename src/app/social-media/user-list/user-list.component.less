@@ -1,0 +1,60 @@
+.user-list {
+    background: white;
+    margin-top: 20px;
+    padding: 0 0 1em 1em;
+    margin-right: 1em;
+
+    h3 {
+        padding: 1em 1em 0 0;
+        margin-bottom: 0;
+    }
+
+    &__card {
+        padding: 1em 0 0;
+
+        &__icon {
+            padding: 0.5em 1em 0.5em 0;
+            color: gray;
+        }
+
+        &__add {
+            padding: 0.5em;
+            border-radius: 50%;
+            width: 20px;
+            text-align: center;
+            margin-right: 1em;
+            transition: all 0.3s ease;
+            color: #4D97EA;
+            background: #E8F1FF;
+
+            &:hover {
+                cursor: pointer;
+                color: white;
+                background: #4D97EA;
+            }
+        }
+
+        &__added {
+            padding: 0.5em;
+            border-radius: 50%;
+            width: 20px;
+            text-align: center;
+            margin-right: 1em;
+            transition: all 0.3s ease;
+            color: white;
+            background: #4D97EA;
+            position: relative;
+
+            .fa-check {
+                position: absolute;
+                top: 10px;
+                font-size: 10px;
+                right: 6px;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 <app-header [title]="'Social Media'" [homeUrl]="'/social-media/home'"></app-header>
 <div class="main-container">
-    <div class="profile-info">
+    <div class="profile-info flex-1">
         <div class="profile-banner">
             <img src="./../../assets/profile-banner.png" width="100%" />
             <img src="./../../assets/user.png" class="profile-img" />
@@ -23,28 +23,28 @@
                     <div class="font-12">Following</div>
                 </div>
             </div>
-            <div style="border-bottom: 1px solid lightgray;">
+            <div class="left-nav">
                 <ul>
                     <li>
-                        Feed
+                        <i class="fa fa-home"></i>Home
                     </li>
                     <li>
-                        Connections
+                        <i class="fa fa-user"></i>Connections
                     </li>
                     <li>
-                        Latest News
+                        <i class="fa fa-globe"></i>Latest News
                     </li>
                     <li>
-                        Events
+                        <i class="fa fa-calendar"></i>Events
                     </li>
                     <li>
-                        Groups
+                        <i class="fa fa-comments-o"></i>Groups
                     </li>
                     <li>
-                        Notifications
+                        <i class="fa fa-bell-o"></i>Notifications
                     </li>
                     <li>
-                        Settings
+                        <i class="fa fa-cog"></i>Settings
                     </li>
                 </ul>
             </div>
@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="add-links">
-            <ul style="margin: 0; padding: 0;" class="font-12">
+            <ul class="font-12">
                 <li>About</li>
                 <li>Settings</li>
                 <li>Support</li>
@@ -62,8 +62,11 @@
             </ul>
         </div>
     </div>
-    <div style="flex: 3;">
+    <div class="flex-3">
         <app-post-list></app-post-list>
         <router-outlet></router-outlet>
+    </div>
+    <div class="flex-1">
+        <app-user-list></app-user-list>
     </div>
 </div>

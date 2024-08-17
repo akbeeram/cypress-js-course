@@ -6,6 +6,7 @@ import { PostListComponent } from './post-list/post-list.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { UserListComponent } from './user-list/user-list.component';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     SocialMediaComponent,
     PostListComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    UserListComponent
   ],
   imports: [
     CommonModule,

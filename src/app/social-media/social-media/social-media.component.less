@@ -1,15 +1,41 @@
-ul {
-    list-style-type: none;
+.left-nav {
+    border-bottom: 1px solid lightgray;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+
+        li {
+            padding: 1em;
+            transition: all 0.3s ease;
+
+            i {
+                margin-right: 0.5em;
+            }
+
+            &:hover {
+                background: lightgray;
+            }
+        }
+    }
 }
 
-ul li {
-    padding: 15px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
+.add-links {
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
 
-ul li:hover {
-    background: lightgray;
+        li {
+            padding: 1em;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: lightgray;
+            }
+        }
+    }
 }
 
 .parentList>li {
@@ -162,7 +188,6 @@ header {
 }
 
 .profile-info {
-    flex: 1;
     background: white;
     margin: 20px 0 0 20px;
     position: relative;
@@ -172,12 +197,13 @@ header {
     position: absolute;
     left: 0;
     right: 0;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     top: 100px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 1px 1px 5px 0px lightgray;
 }
 
 .profile-text {

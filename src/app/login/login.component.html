@@ -1,14 +1,14 @@
 <h2 style="text-align: center;">Welcome to JS/Cypress Course</h2>
 <br />
 <div class="login-block" data-val="login-block">
-    <label class="inline-label">Email</label><span class="mand-star">*</span>
-    <span class="info-icon">
+    <label class="inline-label" *ngIf="isSignUpForm">Email</label><span class="mand-star" *ngIf="isSignUpForm">*</span>
+    <span class="info-icon" *ngIf="isSignUpForm">
         <i>i</i>
         <div class="popover">Email must contain @ symbol</div>
     </span>
-    <div class="form-input-container">
-        <input type="email" id="email" value="" required email class="input" [(ngModel)]="email"
-            #emailInput="ngModel" />
+    <div class="form-input-container" *ngIf="isSignUpForm">
+        <input type="email" id="email" value="" required email class="input" [(ngModel)]="email" #emailInput="ngModel"
+            [attr.disabled]="isLoginInProgress ? true : null" />
         <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="input-error-msg">
             <div *ngIf="emailInput.errors?.['required']">Email is required.</div>
             <div *ngIf="emailInput.errors?.['minlength']">
@@ -19,22 +19,29 @@
             </div>
         </div>
     </div>
-    <label data-val="gender" class="inline-label">Gender</label><span class="mand-star">*</span>
-    <div class="mar-bot-20" style="display: flex;">
-        <span style="flex: 1;"><input type="radio" name="gender" value="male" [(ngModel)]="gender" />&nbsp;Male</span>
-        <span style="flex: 1;"><input type="radio" name="gender" value="female"
-                [(ngModel)]="gender" />&nbsp;Female</span>
-    </div>
-    <label data-val="username" class="inline-label">Username</label><span class="mand-star">*</span>
 
+    <label data-val="gender" class="inline-label" *ngIf="isSignUpForm">Gender</label><span class="mand-star"
+        *ngIf="isSignUpForm">*</span>
+    <div class="mar-bot-20" style="display: flex;" *ngIf="isSignUpForm">
+        <span style="flex: 1;"><input type="radio" name="gender" value="male" [(ngModel)]="gender"
+                [attr.disabled]="isLoginInProgress ? true : null" />&nbsp;Male</span>
+        <span style="flex: 1;"><input type="radio" name="gender" value="female"
+                [attr.disabled]="isLoginInProgress ? true : null" [(ngModel)]="gender" />&nbsp;Female</span>
+    </div>
+
+    <label data-val="username" class="inline-label">Username</label><span class="mand-star">*</span>
     <div class="form-input-container">
-        <input type="text" id="username" value="" required [(ngModel)]="username" class="input"
-            #usernameInput="ngModel" />
+        <input type="text" id="username" value="" required [(ngModel)]="username" class="input" #usernameInput="ngModel"
+            forbiddenUsername minlength="4" [attr.disabled]="isLoginInProgress ? true : null" />
         <div *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)" class="input-error-msg">
-            <div *ngIf="usernameInput.errors?.['required']">Username is required.</div>
-            <div *ngIf="usernameInput.errors?.['minlength']">
+            <i class="fa fa-info-circle"></i>
+            <span *ngIf="usernameInput.errors?.['required']">Username is required.</span>
+            <span *ngIf="usernameInput.errors?.['minlength']">
                 Name must be at least 4 characters long.
-            </div>
+            </span>
+            <span *ngIf="usernameInput.errors?.['forbiddenUsername']">
+                Username already taken.
+            </span>
         </div>
     </div>
 
@@ -46,7 +53,7 @@
 
     <div class="form-input-container">
         <input type="password" id="password" value="" required [(ngModel)]="password" class="input"
-            #passwordInput="ngModel" minlength="3" maxlength="8" />
+            #passwordInput="ngModel" minlength="3" maxlength="8" [attr.disabled]="isLoginInProgress ? true : null" />
         <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)" class="input-error-msg">
             <div *ngIf="passwordInput.errors?.['required']">Password is required.</div>
             <div *ngIf="passwordInput.errors?.['minlength']">
@@ -54,9 +61,26 @@
             </div>
         </div>
     </div>
-    <input type="checkbox" class="mar-bot-20" /> Keep me logged in
-    <button type="button" id="loginBtn" [attr.disabled]="!email || !gender || !password || !username ? true : null"
-        (click)="handleBtnClick()">Register</button>
-    <div id="errMsgDiv"></div>
+    <input type="checkbox" class="mar-bot-20" [attr.disabled]="isLoginInProgress ? true : null" /> Keep me logged in
+    <div class="form-input-container">
+        <button type="button" id="loginBtn" [attr.disabled]="isSubmitEnabled()" (click)="handleBtnClick()">
+            <span *ngIf="isLoginInProgress"><i class="fa fa-pulse fa-spinner"></i>&nbsp;Registering...</span>
+            <span *ngIf="!isLoginInProgress">Register</span>
+        </button>
+        <div>
+            <span *ngIf="isSignUpForm">Existing User ?&nbsp;<a href="Javascript:void(0)"
+                    (click)="isSignUpForm = false;">Sign In</a></span>
+            <span *ngIf="!isSignUpForm">New User ?&nbsp;<a href="Javascript:void(0)" (click)="isSignUpForm = true;">Sign
+                    Up</a></span>
+        </div>
+    </div>
+    <div id="errMsgDiv" *ngIf="loginErr">
+        <div class="flex">
+            <div><i class="fa fa-info-circle mand-star"></i></div>
+            <div class="flex-1 font-12">{{loginErr?.msg}}</div>
+            <div class="err-close" (click)="loginErr = null;">X</div>
+        </div>
+
+    </div>
     <div id="infoMsgDiv"></div>
 </div>

@@ -15,7 +15,10 @@ label {
     bottom: 10px;
     font-size: 12px;
     color: red;
-    padding-left: 10px;
+
+    i {
+        margin-right: 5px;
+    }
 }
 
 .form-input-container {
@@ -30,6 +33,10 @@ label {
     box-sizing: border-box;
     border-radius: 5px;
     border: 1px solid grey;
+
+    &:disabled {
+        background: lightgray;
+    }
 }
 
 #email {
@@ -72,12 +79,36 @@ label {
 }
 
 #errMsgDiv {
-    padding: 10px;
-    color: red;
-    background: rgba(255, 0, 0, 0.2);
+    padding: 1em 2em 1em 1em;
+    color: white;
+    background: black;
     border-radius: 5px;
     font-size: 13px;
-    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 200px;
+    margin: 20px;
+
+    i {
+        margin-right: 5px;
+    }
+
+    .err-close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 5px;
+        margin: 5px;
+        transition: all 0.3s ease;
+        border-radius: 5px;
+
+        &:hover {
+            cursor: pointer;
+            background: lightgray;
+            color: black;
+        }
+    }
 }
 
 #loginBtn {

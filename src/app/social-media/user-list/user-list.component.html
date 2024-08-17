@@ -1,0 +1,23 @@
+<div class="user-list">
+    <h3>Who to follow</h3>
+    <div *ngFor="let user of userList; let i = index;" class="user-list__card">
+        <div class="flex align-items-center">
+            <div class="user-list__card__icon">
+                <i class="fa fa-user-circle-o fa-2x"></i>
+            </div>
+            <div class="flex-1 font-12">
+                <b>{{user?.name}}</b><br />
+                <span style="color: gray;">
+                    {{user?.company?.name}}
+                </span>
+            </div>
+            <div>
+                <div class="user-list__card__add" *ngIf="!user?.isFriend" (click)="addFriend(i)"><i
+                        class="fa fa-plus"></i></div>
+                <div class="user-list__card__added" *ngIf="user?.isFriend" (click)="addFriend(i)"><i
+                        class="fa fa-user"></i><i class="fa fa-check"></i></div>
+
+            </div>
+        </div>
+    </div>
+</div>

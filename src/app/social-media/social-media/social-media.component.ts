@@ -15,32 +15,4 @@ export class SocialMediaComponent implements OnInit {
   ngOnInit(): void {
     // this.router.navigate(['home'], { relativeTo: this.route });
   }
-  private loadPosts() {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(json => {
-        this.postList = json.map((post: any) => {
-          return {
-            ...post,
-            comments: this.getRandomNumber(),
-            likes: this.getRandomNumber(),
-            shares: this.getRandomNumber(),
-            saves: this.getRandomNumber(),
-          }
-        });
-      })
-  }
-  public getRandomNumber() {
-    return Math.ceil(Math.random() * 10);
-  }
-  public handlePostClick(i: number) {
-
-  }
-  public handleDblClick(i: number) {
-
-  }
-  public handlePagination(e: any) {
-    var val = e?.srcElement?.value;
-    this.perPagePosts = val == 'All' ? this.postList?.length : val;
-  }
 }
