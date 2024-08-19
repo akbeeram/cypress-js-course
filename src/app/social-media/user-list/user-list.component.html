@@ -1,4 +1,4 @@
-<div class="user-list">
+<div class="user-list" *ngIf="!isLoading">
     <h3>Who to follow</h3>
     <div *ngFor="let user of userList; let i = index;" class="user-list__card">
         <div class="flex align-items-center">
@@ -7,7 +7,7 @@
             </div>
             <div class="flex-1 font-12">
                 <b>{{user?.name}}</b><br />
-                <span style="color: gray;">
+                <span class="gray-color">
                     {{user?.company?.name}}
                 </span>
             </div>
@@ -19,5 +19,12 @@
 
             </div>
         </div>
+    </div>
+</div>
+<div class="news-list">
+    <h3>Today's news</h3>
+    <div *ngFor="let item of news" class="news-list__card">
+        <div class="font-12"><b>{{item?.title}}</b></div>
+        <div class="gray-color font-12">{{item?.time}}</div>
     </div>
 </div>

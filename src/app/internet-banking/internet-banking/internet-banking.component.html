@@ -81,7 +81,7 @@
                             [ngStyle]="{'display': openAccordions.includes(1) ? 'block' : 'none'}">
                             <br />
                             <div style="text-align: right; margin-bottom: 1em;">
-                                <span class="font-12"><a href="./open-deposit.html">Open Deposit</a></span>
+                                <span class="font-12"><a [routerLink]="['./../open-deposit']">Open Deposit</a></span>
                             </div>
                             <div style="display: flex; justify-content: space-between; margin-bottom: 1em;">
                                 <div>
@@ -154,9 +154,9 @@
                 <div>Quick Links</div>
                 <br />
                 <ul class="font-12 quick-links">
-                    <li><a href="Javascript:void(0)">Open FD</a></li>
+                    <li><a [routerLink]="['./../open-deposit']">Open FD</a></li>
                     <li><a href="Javascript:void(0)">Add Payee</a></li>
-                    <li><a href="Javascript:void(0)">Money Transfer</a></li>
+                    <li><a [routerLink]="['./../money-transfer']">Money Transfer</a></li>
                     <li><a href="Javascript:void(0)">Recharge</a></li>
                     <li><a href="Javascript:void(0)">Apply for Loan</a></li>
                     <li><a href="Javascript:void(0)">Report Fraud and Dispute</a></li>

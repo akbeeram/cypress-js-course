@@ -1,8 +1,8 @@
 <div class="posts">
     <div id="noPosts" *ngIf="!postList?.length">
-        Loading Posts...
+        Loading...
     </div>
-    <div class="postPagination">Show
+    <div class="postPagination" *ngIf="!isLoading">Show
         <select (change)="handlePagination($event)" id="paginationSelection">
             <option value="5">5</option>
             <option value="10">10</option>
@@ -13,27 +13,46 @@
         </select>
         Posts
     </div>
-    <div id="postList" class="postList">
+    <div id="postList" class="postList" *ngIf="!isLoading">
         <h3>Recent Posts</h3>
         <br />
         <div class="postItem" [id]="'postItem-' + i"
-            *ngFor="let post of postList.slice(0, perPagePosts); let i = index;" (dblclick)="handleDblClick(i)">
-            <div>
-                <div class="postTitle">{{post.title}}</div>
-                <div class="postBody">{{post.body}}</div>
-                <div class="emojiBlock">
-                    <span class="emojiIcon"><i class="fa fa-comment-o"></i> {{post?.comments}}</span>
-                    <span class="emojiIcon"><i class="fa fa-heart-o"></i> {{post?.likes}}</span>
-                    <span class="emojiIcon"><i class="fa fa-share-alt"></i> {{post?.shares}}</span>
-                    <span class="emojiIcon"><i class="fa fa-bookmark-o"></i> {{post?.saves}}</span>
+            *ngFor="let post of postList.slice(0, perPagePosts); let i = index;">
+            <div class="flex align-items-center postItem__author">
+                <div class="postItem__author__icon">
+                    <i class="fa fa-user-circle-o fa-2x gray-color"></i>
+                </div>
+                <div>
+                    <div class="font-14">{{post?.author?.name}}</div>
+                    <div class="font-12 gray-color">{{post?.author?.company?.bs}}</div>
                 </div>
             </div>
             <div>
+                <!-- <div class="postTitle">{{post.title}}</div> -->
+                <div class="postBody gray-color font-12">{{post.body}}</div>
+                <div class="emojiBlock font-12">
+                    <span class="emojiBlock__icon" (click)="handleEmojiClick('COMMENT', post)"><i
+                            class="fa fa-comment-o"></i> {{post?.comments}}</span>
+                    <span class="emojiBlock__icon" (click)="handleEmojiClick('LIKE', post)"><i class="fa"
+                            [ngClass]="{'fa-heart red-color': post?.heartFilled, 'fa-heart-o': !post?.heartFilled}"></i>
+                        {{post?.likes}}</span>
+                    <span class="emojiBlock__icon" (click)="handleEmojiClick('SHARE', post)"><i
+                            class="fa fa-share-alt"></i> {{post?.shares}}</span>
+                    <span class="emojiBlock__icon" (click)="handleEmojiClick('SAVE', post)"><i class="fa"
+                            [ngClass]="{'fa-bookmark-o': !post?.postSaved, 'fa-bookmark green-color': post?.postSaved}"></i>
+                        {{post?.saves}}</span>
+                </div>
+                <div style="padding: 1em 0 0 1em;" *ngIf="post?.showComments">
+                    <app-post-comment *ngFor="let c of post?.commentList" [comment]="c"
+                        (onEmojiClick)="handleCommentEmojiClick($event, post)"></app-post-comment>
+                </div>
+            </div>
+            <!-- <div>
                 <a href="Javascript:void(0)" class="postItemAction" (click)="openPost(i)">Details</a>
             </div>
             <div>
                 <a href="Javascript:void(0)" class="postItemAction" (click)="deletePost(i)">Delete</a>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

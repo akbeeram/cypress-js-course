@@ -1,0 +1,19 @@
+<div class="commentItem" *ngIf="comment">
+    <div class="commentItemIcon">
+        {{comment.name[0]}}
+    </div>
+    <div style="flex: 1;">
+        <div style="margin-bottom: 10px;"><b>{{comment.name}}</b> | <i>{{comment.email}}</i></div>
+        <div style="font-size: 12px;">{{comment.body}}</div>
+        <div class="emojiBlock">
+            <span class="emojiIcon" (click)="handleEmojiClick('LIKE', comment)"><i class="fa"
+                    [ngClass]="{'fa-heart red-color': comment?.heartFilled, 'fa-heart-o': !comment?.heartFilled}"></i>
+                {{comment?.likes}}</span>
+            <span class="emojiIcon" (click)="handleEmojiClick('SHARE', comment)"><i class=" fa fa-share-alt"></i>
+                {{comment?.shares}}</span>
+            <span class="emojiIcon" (click)="handleEmojiClick('SAVE', comment)"><i class="fa"
+                    [ngClass]="{'fa-bookmark-o': !comment?.commentSaved, 'fa-bookmark green-color': comment?.commentSaved}"></i>
+                {{comment?.saves}}</span>
+        </div>
+    </div>
+</div>

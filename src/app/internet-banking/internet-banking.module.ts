@@ -4,6 +4,8 @@ import { InternetBankingComponent } from './internet-banking/internet-banking.co
 import { AppCommonModule } from '../common/common.module';
 import { MoneyTransferComponent } from './money-transfer/money-transfer.component';
 import { OpenDepositComponent } from './open-deposit/open-deposit.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +17,10 @@ import { OpenDepositComponent } from './open-deposit/open-deposit.component';
   ],
   imports: [
     CommonModule,
-    AppCommonModule
+    AppCommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class InternetBankingModule { }

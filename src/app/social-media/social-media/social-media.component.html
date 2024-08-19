@@ -8,10 +8,10 @@
                 <h4>Cypress Coder</h4>
                 <div class="font-12">Cypress Automation Tester and ABC.com</div>
                 <br />
-                <div class="font-14">I'd love to change the world, but they wont give me the source code</div>
+                <div class="font-12">I'd love to change the world, but they wont give me the source code</div>
             </div>
         </div>
-        <div>
+        <div style="background: white;">
             <div class="profile-stats">
                 <div style="flex: 1;"><b>250</b>
                     <div class="font-12">Posts</div>
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="left-nav">
-                <ul>
+                <ul class="font-12">
                     <li>
                         <i class="fa fa-home"></i>Home
                     </li>
@@ -48,7 +48,7 @@
                     </li>
                 </ul>
             </div>
-            <div style="text-align: center; padding: 1em;">
+            <div style="text-align: center; padding: 1em;" class="font-12">
                 <a href="Javascript:void(0)">View Profile</a>
             </div>
         </div>
@@ -63,10 +63,11 @@
         </div>
     </div>
     <div class="flex-3">
-        <app-post-list></app-post-list>
+        <app-post-list *ngIf="postList?.length" [postList]="postList" (onEmojiClick)="handleEmojiClick($event)"
+            (onCommentEmojiClick)="handleCommentEmojiClick($event)"></app-post-list>
         <router-outlet></router-outlet>
     </div>
     <div class="flex-1">
-        <app-user-list></app-user-list>
+        <app-user-list *ngIf="userList?.length" [userList]="userList"></app-user-list>
     </div>
 </div>
